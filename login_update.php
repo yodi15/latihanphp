@@ -30,10 +30,7 @@ if(isset($_POST['submit'])){
 			<div class="form-group">
 				<select name="id" class="form-control">
 				<?php
-				while($row = mysqli_fetch_assoc($result)){
-					$id = $row['id'];
-					echo "<option value ='$id'>$id</option>";
-				}
+				showALLUserId();
 				?>
 				</select>
 			</div>
