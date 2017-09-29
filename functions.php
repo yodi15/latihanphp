@@ -15,3 +15,19 @@ function showALLUserId(){
 		echo "<option value='$id'>$id</option>";
 	}
 }
+
+function updateUserTable(){
+	global $koneksi;
+	$id 		= $_POST['id'];
+	$username	= $_POST['username'];
+
+	$query = "UPDATE users
+			 SET username = '$username',
+			 	 password = '$password'
+			 WHERE id = $id";
+	$result = mysqli_query($koneksi, $query);
+
+	if(!$result){
+		die("Query Failde.");
+	}
+}
