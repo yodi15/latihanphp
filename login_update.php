@@ -29,7 +29,7 @@ if(isset($_POST['SUBMIT'])){
 
 <div class="container">
 	<div class="col-mc-6">
-		<form action="login_create.php" method="post">
+		<form action="login_update.php" method="post">
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input type="text" name="username" class="form-control" />
