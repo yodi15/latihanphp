@@ -5,7 +5,6 @@
 if(isset($_POST['submit'])){
 	deleteUser();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +17,7 @@ if(isset($_POST['submit'])){
 
 <div class="container">
 	<div class="col-mc-6">
-		<form action="login_update.php" method="post">
+		<form action="login_delete.php" method="post">
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input type="text" name="username" class="form-control" />
@@ -30,11 +29,11 @@ if(isset($_POST['submit'])){
 			<div class="form-group">
 				<select name="id" class="form-control">
 				<?php
-				showALLUsersId();
+				showAllUsersId();
 				?>
 				</select>
 			</div>
-			<input type="submit" name="submit" value="DELETE" class="btn btn-primary" />
+			<input type="submit" name="submit" value="DELETE" class="btn btn-primary"/>
 		</form>
 	</div>
 </div>
