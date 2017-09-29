@@ -1,20 +1,5 @@
-<?php
-
-$koneksi = mysqli_connect("localhost", "root", "", "belajar_loginapp");
-
-if($koneksi){
-	echo "We're connected";
-}else{
-	echo "Connection failed";
-}
-
-$query = "SELECT * FROM users";
-$result = mysqli_query($koneksi, $query);
-
-if(!$result){
-	die('Query Failed' . mysqli_error($koneksi));
-}
-?>
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
 
 <!DOCTYPE html>
 <html>
@@ -27,13 +12,11 @@ if(!$result){
 <div class="container">
 	<div class="col-mc-6">
 		
-		<?php
-		while($row = mysqli_fetch_assoc($result)){
-		echo "<pre>";
-		print_r($row);
-		echo "</pre>";
-		}
-		?>
+		<select name="id" class="form-control">
+			<?php
+				showALLUsersId();
+				?>
+		</select>
 
 	</div>
 </div>
