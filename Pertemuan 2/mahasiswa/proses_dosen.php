@@ -5,6 +5,12 @@ if($_GET['action'] =="add") {
 	// 2. Query
 	$query = "INSERT INTO dosen (kode_dosen, nama_dosen)
 			  VALUE ('$_POST[kode_dosen]', '$_POST[nama_dosen]')";
+}else if($_GET['action'] == "edit"){
+	// 2. Query
+	$query = "UPDATE dosen
+			  SET kode_dosen = '$_POST[kode_dosen]',
+			      nama_dosen = '$_POST[nama_dosen]'
+			  WHERE id = $_POST[id]";
 }
 
 mysqli_query($koneksi, $query);
