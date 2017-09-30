@@ -7,8 +7,8 @@ $query = "SELECT * FROM mata_kuliah";
 $hasil = mysqli_query($koneksi, $query);
 ?>
 
-<h1>Data Dosen</h1>
-<a href="template.php?page=formdosen&action=add">Tambah Data</a>
+<h1>Data Mata Kuliah</h1>
+<a href="template.php?page=formmtk&action=add">Tambah Data</a>
 <table>
 <thead>
 <tr>
