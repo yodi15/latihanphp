@@ -2,7 +2,7 @@
 if($_GET['action'] == "edit"){
 	echo "<h1>Edit Mata Kuliah</h1>";
 	include("db.php");
-	$query = "SELECT * FROM mata_kulaih
+	$query = "SELECT * FROM mata_kuliah
 			  WHERE id = $_GET[id]";
 	$hasil = mysqli_query ($koneksi, $query);
 	$row = mysqli_fetch_assoc($hasil);
