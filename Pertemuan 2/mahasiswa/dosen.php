@@ -1,4 +1,4 @@
-<?php //filename: mahasiswa.php
+<?php //filename: dosen.php
 // 1. koneksi
 include("db.php");
 
@@ -27,9 +27,9 @@ while($row = mysqli_fetch_assoc($hasil)){
 <td><?php echo $row['kode_dosen']; ?></td>
 <td><?php echo $row['nama_dosen']; ?></td>
 <td>
-<a href="template.php?page=formmahasiswa&id=<?php echo $row['id'];
+<a href="template.php?page=formdosen&id=<?php echo $row['id'];
 ?>&action=edit">Edit</a> |
-<a href="proses_mhs.php?action=delete&id=<?php echo $row['id']; ?>">Delete</a>
+<a href="proses_dosen.php?action=delete&id=<?php echo $row['id']; ?>">Delete</a>
 </td>
 </tr>
 <?php
