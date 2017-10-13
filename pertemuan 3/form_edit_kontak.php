@@ -28,7 +28,7 @@ $row   = mysqli_fetch_assoc($hasil);
 	$x = "SELECT * FROM kategori";
 	$y = mysqli_query($db, $x);
 	?>
-	<form action="" method="post">
+	<form action="prosses_edit_kontak.php" method="post">
 		Nama:
 		<input type="text" name="nama" value="<?php echo $row['nama']; ?>" />
 		<br />
@@ -40,12 +40,17 @@ $row   = mysqli_fetch_assoc($hasil);
 		<br />
 		Kategori:
 		<select name="kategori">
-			<?php while($row = mysqli_fetch_array($y)):; ?>
-				<option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?> 
-				</option>
-			<?php endwhile; ?>
+			<?php
+			include("koneksi.php");
+			$query = "SELECT * FROM kategori";
+			$hasil = mysqli_query($db, $query);
+			while($data=mysqli_fetch_array($hasil)){
+				echo "<option value=$data[id]>$data[keterangan]<?option>";
+			}
+			?>
 		</select>
 		<br />
+		<input type="hidden" name="id" value="<?php echo $row['id']; ?> " />
 		<input type="submit" value="Simpan" />
 	</form>
 </div>
