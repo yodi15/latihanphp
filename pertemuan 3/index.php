@@ -3,15 +3,25 @@ include("koneksi.php");
 
 if(isset($_POST['filter'])){
 	//jika tombol filter di klik
-		$id = $_GET['id'];
-		
+		$id = $_POST['kategori'];
 		$query = "SELECT * FROM kontak
 			  INNER JOIN kategori
 			  ON kontak.kategori_id = kategori.id
 			  WHERE kontak.kategori_id=$_POST[kategori]";
-	}
+			  echo $query;
+	}else if (isset($_POST['cari'])){
+		$query = "SELECT * FROM kontak 
+			      INNER JOIN kategori
+			      ON kontak.kategori_id = kategori.id
+			      WHERE 
+			      	kontak.nama LIKE '%$_POST[search_text]%' OR
+			      	kontak.phone LIKE '%$_POST[search_text]%' OR
+			      	kontak.email LIKE '%$_POST[search_text]%' OR 
+			      	kategori.keterangan LIKE '%$_POST[search_text]%'
+			      	";
+			      }
 
-	$q1 = "SELECT
+	else $query = "SELECT
 				a.id, a.nama, a.phone, a.email,
 				b.keterangan
 			  FROM
@@ -20,7 +30,7 @@ if(isset($_POST['filter'])){
 			  WHERE
 				a.kategori_id = b.id";
 	
-	$hasil = mysqli_query($db, $q1);
+	$hasil = mysqli_query($db, $query);
 	//return $hasil;
 ?>
 
@@ -37,27 +47,28 @@ if(isset($_POST['filter'])){
 		<li><a href="kategori.php">Kategori</a></li>
 	</ul>
 </div>
+
+<!-- Filter -->
 <div id="filter">
 	<b>Filter berdasarkan kategori: </b>
-	<?php
-	$q2 = "SELECT * FROM kategori";
-	$h2 = mysqli_query($db, $q2);
-	while($row = mysqli_fetch_assoc($h2)) {
-	?>
-
-	<form action="index.php" method="post">
-		<select>
-			<?php while($row = mysqli_fetch_assoc($h2)):; ?>
-			<option value="<?php echo $row['id']; ?>"><?php echo $row['keterangan']; ?></option>
-			<?php endwhile; ?>
-		</select>
-		<input type="submit" name="filter" value="filter" />
-		<button href="index.php" >Reset Filter</button>
+	<form action="" method="post">
+	<select name="kategori">
+		<?php 
+		$q2 = "SELECT * FROM kategori";
+		$h2 = mysqli_query($db, $q2);
+		while($row = mysqli_fetch_assoc($h2)){
+			?>
+		<option value="<?php echo $row['id'] ?>"> 
+		<?php echo $row['keterangan']; ?> </option>
+		<?php } ?>
+	</select> 
+	<input type="submit" name="filter" value="Filter" /> 
+	<button href="index.php"> Reset Filter </button>
 	</form>
-	<?php
-	}
-	?>
 </div>
+<!-- Filter -->
+
+<!-- search -->
 <div id="search">
 	<b>Search: </b>
 	<form action="" method="post">
@@ -65,6 +76,8 @@ if(isset($_POST['filter'])){
 		<input type="submit" name="cari" value="Cari" />
 	</form>
 </div>
+<!-- search -->
+
 <div id="konten">
 	<h2>Kontak</h2>
 	<a href="form_tambah_kontak.php">Tambah Kontak</a>
