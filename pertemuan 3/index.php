@@ -24,7 +24,7 @@ if(isset($_POST['filter'])){
 			      	";
 			      } // 3.
 			      else $query = "SELECT
-				a.id, a.nama, a.phone, a.email,
+				a.id,a.icon_path, a.nama, a.phone, a.email,
 				b.keterangan
 			  FROM
 				kontak a,
@@ -87,6 +87,7 @@ if(isset($_POST['filter'])){
 		<thead>
 			<tr>
 				<th>No.</th>
+				<th>Icon</th>
 				<th>Nama</th>
 				<th>Hp.</th>
 				<th>Email</th>
@@ -102,7 +103,7 @@ if(isset($_POST['filter'])){
 			?>
 			<tr>
 				<td><?php echo $i; ?></td>
-				<td><img src="<?php echo $row ['icon_path']; ?>" width="50"></td>
+				<td><img src="<?php echo $row ['icon_path']; ?>" width="500"></td>
 				<td><?php echo $row ['nama']; ?></td>
 				<td><?php echo $row ['phone']; ?></td>
 				<td><?php echo $row ['email']; ?></td>
