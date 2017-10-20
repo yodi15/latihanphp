@@ -1,6 +1,8 @@
 <?php // filename: index.php
-include("koneksi.php");
+include("koneksi.php"); //database
 
+// ada 3 kemungkinan awal yaitu
+// 1.
 if(isset($_POST['filter'])){
 	//jika tombol filter di klik
 		$id = $_POST['kategori'];
@@ -9,7 +11,8 @@ if(isset($_POST['filter'])){
 			  ON kontak.kategori_id = kategori.id
 			  WHERE kontak.kategori_id=$_POST[kategori]";
 			  echo $query;
-	}else if (isset($_POST['cari'])){
+	} // 2.
+	else if (isset($_POST['cari'])){
 		$query = "SELECT * FROM kontak 
 			      INNER JOIN kategori
 			      ON kontak.kategori_id = kategori.id
@@ -19,9 +22,8 @@ if(isset($_POST['filter'])){
 			      	kontak.email LIKE '%$_POST[search_text]%' OR 
 			      	kategori.keterangan LIKE '%$_POST[search_text]%'
 			      	";
-			      }
-
-	else $query = "SELECT
+			      } // 3.
+			      else $query = "SELECT
 				a.id, a.nama, a.phone, a.email,
 				b.keterangan
 			  FROM
@@ -100,6 +102,7 @@ if(isset($_POST['filter'])){
 			?>
 			<tr>
 				<td><?php echo $i; ?></td>
+				<td><img src="<?php echo $row ['icon_path']; ?>" width="50"></td>
 				<td><?php echo $row ['nama']; ?></td>
 				<td><?php echo $row ['phone']; ?></td>
 				<td><?php echo $row ['email']; ?></td>

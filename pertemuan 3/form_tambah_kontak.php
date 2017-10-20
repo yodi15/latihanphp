@@ -20,7 +20,9 @@ $hasil = mysqli_query($db, $query);
 </div>
 <div id="konten">
 	<h2>Tambah Kontak</h2>
-	<form action="prosses_tambah_kontak.php" method="post">
+	<form action="prosses_tambah_kontak.php" method="post" enctype="multipart/form-data">
+		icon:
+		<input type="file" name="gambar"><br>
 		Nama:
 		<input type="text" name="nama" />
 		<br />
