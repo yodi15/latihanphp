@@ -1,5 +1,12 @@
 <?php // filename: form_tambah_kontak.php
 
+session_start();
+	
+	if(!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
+		header('Location: login.php');
+		//echo "BELUM LOGIN";
+	}
+
 include("koneksi.php");
 $query = "SELECT * FROM kategori ";
 $hasil = mysqli_query($db, $query);
@@ -12,6 +19,7 @@ $hasil = mysqli_query($db, $query);
 </head>
 <body>
 <h1>Phone Book</h1>
+<a href="logout.php">Logout</a>
 <div id="menu">
 	<ul>
 		<li><a href="index.php">Kontak</a></li>

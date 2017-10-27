@@ -1,5 +1,10 @@
 <?php // filename: form_tambah_kategori.php
-
+session_start();
+	
+	if(!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
+		header('Location: login.php');
+		//echo "BELUM LOGIN";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +14,7 @@
 </head>
 <body>
 <h1>Phone Book</h1>
+<a href="logout.php">Logout</a>
 <div id="menu">
 	<ul>
 		<li><a href="index.php">Kontak</a></li>

@@ -1,6 +1,13 @@
 <?php // filename: index.php
 include("koneksi.php"); //database
 
+session_start();
+	
+	if(!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
+		header('Location: login.php');
+		//echo "BELUM LOGIN";
+	}
+
 // ada 3 kemungkinan awal yaitu
 // 1.
 if(isset($_POST['filter'])){
@@ -13,6 +20,7 @@ if(isset($_POST['filter'])){
 			  echo $query;
 	} // 2.
 	else if (isset($_POST['cari'])){
+		//jika tombol cari di klik
 		$query = "SELECT * FROM kontak 
 			      INNER JOIN kategori
 			      ON kontak.kategori_id = kategori.id
@@ -22,7 +30,7 @@ if(isset($_POST['filter'])){
 			      	kontak.email LIKE '%$_POST[search_text]%' OR 
 			      	kategori.keterangan LIKE '%$_POST[search_text]%'
 			      	";
-			      } // 3.
+			      } // 3. Meliaht data dari d.base
 			      else $query = "SELECT
 				a.id,a.icon_path, a.nama, a.phone, a.email,
 				b.keterangan
@@ -43,6 +51,7 @@ if(isset($_POST['filter'])){
 </head>
 <body>
 <h1>Phone Book</h1>
+<a href="logout.php">Logout</a>
 <div id="menu">
 	<ul>
 		<li><a href="index.php">Kontak</a></li>
@@ -103,7 +112,7 @@ if(isset($_POST['filter'])){
 			?>
 			<tr>
 				<td><?php echo $i; ?></td>
-				<td><img src="<?php echo $row ['icon_path']; ?>" width="500"></td>
+				<td><img src="<?php echo $row ['icon_path']; ?>" width="50"></td>
 				<td><?php echo $row ['nama']; ?></td>
 				<td><?php echo $row ['phone']; ?></td>
 				<td><?php echo $row ['email']; ?></td>

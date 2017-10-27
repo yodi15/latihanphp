@@ -1,6 +1,14 @@
 <?php // filename: form_edit_kategori.php
 //1.koneksi
 include ("koneksi.php");
+
+session_start();
+	
+	if(!isset($_SESSION['login']) || $_SESSION['login'] != 1) {
+		header('Location: login.php');
+		//echo "BELUM LOGIN";
+	}
+
 // GET DATA FROM URL
 $id = $_GET['id'];
 //2.Query
@@ -18,6 +26,7 @@ $row = mysqli_fetch_assoc($hasil);
 </head>
 <body>
 <h1>Phone Book</h1>
+<a href="logout.php">Logout</a>
 <div id="menu">
 	<ul>
 		<li><a href="index.php">Kontak</a></li>
